@@ -1,4 +1,5 @@
 def to_camel_case(text):
+  ''' Text is separated by either _ or - '''
   if text == '':
     return ''
   for char in text:
