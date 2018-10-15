@@ -16,13 +16,13 @@ const pickPeaks = arr => {
   });
   return res;
 };
-console.log(peakPicks([3, 2, 3, 6, 4, 1, 2, 3, 2, 1, 2, 2, 2, 1]));
+console.log(pickPeaks([3, 2, 3, 6, 4, 1, 2, 3, 2, 1, 2, 2, 2, 1]));
 
-function pickPeaks(arr) {
-  var pSlope = 0,
-    pi = 0;
+const pickPeaks = arr => {
+  let pSlope = 0;
+  let pi = 0;
   var result = { pos: [], peaks: [] };
-  if (arr.length == 0) return result;
+  if (arr.length === 0) return result;
 
   arr.reduce(function(p, c, i) {
     if (pSlope > 0 && c - p < 0) {
@@ -36,4 +36,5 @@ function pickPeaks(arr) {
     return c;
   });
   return result;
-}
+};
+console.log(pickPeaks([3, 2, 3, 6, 4, 1, 2, 3, 2, 1, 2, 2, 2, 1]));
