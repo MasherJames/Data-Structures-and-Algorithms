@@ -137,3 +137,26 @@ Output:"true"
 TDD
 
 Include tests
+
+Test.assertEquals(numberOfRoutes(1, 1), 2);
+Test.assertEquals(numberOfRoutes(5, 1), 6);
+Test.assertEquals(numberOfRoutes(3, 4), 35);
+You have a grid with m rows and n columns.
+Return number of ways that you can start from point A to reach point B.
+you are only allowed to move right and up.
+
+alt text
+
+In the picture, there are 10 pathes from A to B.
+
+
+Complete the method so that it does the following:
+Removes any duplicate query string parameters from the url
+Removes any query string parameters specified within the 2nd argument (optional array)
+Examples:
+stripUrlParams('www.codewars.com?a=1&b=2&a=2') // returns 'www.codewars.com?a=1&b=2'
+stripUrlParams('www.codewars.com?a=1&b=2&a=2', ['b']) // returns 'www.codewars.com?a=1'
+stripUrlParams('www.codewars.com', ['b']) // returns 'www.codewars.com'
+
+* Finding the first non-repeating character
+if all characters are repeating return an empty string e.g ""
