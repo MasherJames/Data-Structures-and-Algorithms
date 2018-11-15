@@ -12,5 +12,5 @@ const twoSum = (arr, sum) => {
   return pairs;
 };
 
+module.exports = twoSum;
 // console.log(twoSum([1, 6, 4, 5, 3, 3], 7));
-
