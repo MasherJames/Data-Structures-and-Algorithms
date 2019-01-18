@@ -25,7 +25,7 @@
 // console.log(appendObjArr("stress"));
 
 //Fibonacci of time complexity o(n)
-const fibbonaci = n => {
+const fibonacci = n => {
   let a = 0,
     b = 1,
     c;
