@@ -6,4 +6,6 @@ const solution = (firstArray, secondArray) => {
       .reduce((acc, curr) => acc + curr) / firstArray.length;
   return res;
 };
-console.log(solution([10, 20, 10, 2], [10, 25, 5, -2]));
+
+module.exports = solution;
+// console.log(solution([10, 20, 10, 2], [10, 25, 5, -2]));

@@ -1,30 +1,30 @@
 const caesarCipher = require("./caesarCipher");
 
-test("caesarCipher should exist for testing", () => {
+test("caesaCipher exists", () => {
   expect(typeof caesarCipher).toEqual("function");
 });
 
-test("should output string with all letters changed depending on num", () => {
+test("test with num 2", () => {
   const res = caesarCipher("my Name Is James", 2);
   expect(res).toEqual("oa Pcog Ku Lcogu");
 });
 
-const rot13 = require("./caesarCipher");
-
-test("caesarCipher function exists for testing", () => {
-  expect(typeof rot13).toEqual("function");
-});
-
-test("should output rot13 string on the string given", () => {
-  const res = rot13("This is my first ROT13 excercise!");
+test("test with num 13", () => {
+  const res = caesarCipher("This is my first ROT13 excercise!", 13);
   expect(res).toEqual("Guvf vf zl svefg EBG13 rkprepvfr!");
 });
 
-describe("rot13 test", function() {
-  it("should test rot13", function() {
-    Test.assertEquals(
-      rot13("This is my first ROT13 excercise!"),
-      "Guvf vf zl svefg EBG13 rkprepvfr!"
-    );
-  });
+test("test with num 1200", () => {
+  const res = caesarCipher("@@@Not Done React Testing &?", 1200);
+  expect(res).toEqual("@@@Rsx Hsri Viegx Xiwxmrk &?");
+});
+
+test("test with num 67", () => {
+  const res = caesarCipher("This is *** so weird 90", 67);
+  expect(res).toEqual("Iwxh xh *** hd ltxgs 90");
+});
+
+test("test with num 912", () => {
+  const res = caesarCipher("Mocha chai jest 12345+_*", 912);
+  expect(res).toEqual("Oqejc ejck lguv 12345+_*");
 });
