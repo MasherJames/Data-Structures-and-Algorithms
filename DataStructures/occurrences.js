@@ -5,8 +5,24 @@
 // };
 // console.log(occurrenceMatch("abracadabra", "abr"));
 
-const occurrenceMatch = (string, pattern) => {
-  let res = string.search(pattern);
-  return res;
+// const occurrenceMatch = (string, pattern) => {
+//   let res = string.search(pattern);
+//   return res;
+// };
+// console.log(occurrenceMatch("bracadabra", "abr"));
+
+const largestSum = arr => {
+  let largest = 0;
+  let maxNum = 0;
+
+  for (let num of arr) {
+    maxNum += num;
+    if (maxNum < 0) {
+      maxNum = 0;
+    } else if (largest < maxNum) {
+      largest = maxNum;
+    }
+  }
+  return largest;
 };
-console.log(occurrenceMatch("abracadabra", "abr"));
+console.log(largestSum([31, -41, 59, 26, -53, 58, 97, -93, -23, 84]));
