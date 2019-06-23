@@ -33,3 +33,13 @@ const stockBuying = p => {
     console.log(`S = ${p.indexOf(lowestPrice + profit) + 1}`);
 }
 stockBuying([30, 20, 10, 15, 17, 25, 20, 23]);
+
+const stringTransformation = s => {
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  const res = s
+              .split("")
+              .map(e => alphabet[25 - alphabet.indexOf(e)])
+              .join("");
+  return res
+}
+console.log(stringTransformation('acdz'))

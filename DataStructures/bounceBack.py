@@ -7,21 +7,19 @@ class Ball:
 		self.vy = vy
 
 	def step(self):
-		self.x += self.vx
+		if self.x == 0:
+			self.x += self.vx
+		elif self.x == 5.0:
+    		self.x -= self.vx
 		self.y += self.vy
 
-		print("Stepped to " + str(self.x) + "," + str(self.y))
-
-	def bounce(self):
-		self.x -= self.vx
 		print("Stepped to " + str(self.x) + "," + str(self.y))
 
 	def run(self, steps = 50):
 		if not self.running:
 			self.running = 	True
 			for s in range(steps):
-				if self.x == 5.0:
-    					self.bounce()
+    				self.step()
 			self.running = False
 
 b = Ball()
