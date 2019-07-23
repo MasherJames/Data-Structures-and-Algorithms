@@ -21,4 +21,4 @@ const pascals = n => {
     }
     return pascalsTriangle;
 }
-console.log(pascals(4));
+console.log(pascals(10));
