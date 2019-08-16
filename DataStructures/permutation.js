@@ -16,8 +16,20 @@ const permutations = string => {
             res.push(curLet + recursiveRes[j]);
         }
         // console.log("inside");
-    }
-    console.log("called end")
-    return [...new Set(res)];
+        return [...new Set(res)];
 };
-console.log(permutations("abc"));
+
+// console.log(permutations(1027));
+
+const nextSmaller = number => {
+  const combinations = permutations(number);
+  const descendingArr = combinations.sort((f, s) => s - f);
+  const nextSmall = descendingArr[descendingArr.indexOf(String(number)) + 1];
+  return nextSmall === undefined
+    ? -1
+    : nextSmall[0] === "0"
+    ? -1
+    : Number(nextSmall);
+};
+
+console.log(nextSmaller(1027));
