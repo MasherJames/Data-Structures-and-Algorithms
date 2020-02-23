@@ -28,18 +28,18 @@
 // }
 // console.log(maxDepth("()"))
 
-function isBalanced([...str]) {
-  return (
-    str.reduce((uptoPrevChar, thisChar) => {
-      ((thisChar === "(" && uptoPrevChar++) ||
-        (thisChar === ")" && uptoPrevChar--)) &&
-        ((thisChar === "{" && uptoPrevChar++) ||
-          (thisChar === "}" && uptoPrevChar--)) &&
-        ((thisChar === "[" && uptoPrevChar++) ||
-          (thisChar === "]" && uptoPrevChar--));
+// function isBalanced([...str]) {
+//   return (
+//     str.reduce((uptoPrevChar, thisChar) => {
+//       ((thisChar === "(" && uptoPrevChar++) ||
+//         (thisChar === ")" && uptoPrevChar--)) &&
+//         ((thisChar === "{" && uptoPrevChar++) ||
+//           (thisChar === "}" && uptoPrevChar--)) &&
+//         ((thisChar === "[" && uptoPrevChar++) ||
+//           (thisChar === "]" && uptoPrevChar--));
 
-      return uptoPrevChar;
-    }, 0) === 0
-  );
-}
-console.log(isBalanced("[()]{}{()()}"));
+//       return uptoPrevChar;
+//     }, 0) === 0
+//   );
+// }
+// console.log(isBalanced("[()]{}{()()}"));

@@ -1,15 +1,15 @@
 const twoSum = (arr, sum) => {
-    let pairs = [];
-    let hashtable = [];
-    for (let i = 0; i < arr.length; i++) {
-        let curNum = arr[i];
-        let counterPart = sum - curNum;
-        if (hashtable.indexOf(counterPart) !== -1) {
-            pairs.push([curNum, counterPart]);
-        }
-        hashtable.push(curNum);
+  let pairs = [];
+  let hashtable = [];
+  for (let i = 0; i < arr.length; i++) {
+    let curNum = arr[i];
+    let counterPart = sum - curNum;
+    if (hashtable.indexOf(counterPart) !== -1) {
+      pairs.push([curNum, counterPart]);
     }
-    return pairs;
+    hashtable.push(curNum);
+  }
+  return pairs;
 };
 console.log(twoSum([1, 6, 4, 5, 3, 3], 7));
 
@@ -25,4 +25,4 @@ console.log(twoSum([1, 6, 4, 5, 3, 3], 7));
 //   }
 //   return results;
 // };
-// console.log(twoSum([1234, 5678, 9012], 14690));
+// console.log(twoSum([1, 6, 4, 5, 3, 3], 7));

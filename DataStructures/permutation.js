@@ -1,6 +1,6 @@
 const permutations = string => {
   let res = [];
-  console.log("called start");
+
   if (string.length === 1) {
     res.push(string);
     return res;
@@ -8,19 +8,18 @@ const permutations = string => {
 
   for (let i = 0; i < string.length; i++) {
     let curLet = string[i];
-    // console.log(curLet)
     let newStr = string.substring(0, i) + string.substring(i + 1);
+    console.log(newStr);
     let recursiveRes = permutations(newStr);
-    // console.log(recursiveRes);
+
     for (let j = 0; j < recursiveRes.length; j++) {
       res.push(curLet + recursiveRes[j]);
     }
-    // console.log("inside");
-    return [...new Set(res)];
   }
+  return [...new Set(res)];
 };
 
-// console.log(permutations(1027));
+console.log(permutations("102"));
 
 const nextSmaller = number => {
   const combinations = permutations(number);
@@ -33,4 +32,4 @@ const nextSmaller = number => {
     : Number(nextSmall);
 };
 
-console.log(nextSmaller(1027));
+console.log(nextSmaller("1027"));
