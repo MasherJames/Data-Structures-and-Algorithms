@@ -18,8 +18,8 @@ root.left.right = new Node(17);
 root.right.left = new Node(23);
 root.right.right = new Node(27);
 
-// left, right, root
-const postOrderTraversal = (root) => {
+// root, left, right
+const preOrderTraversal = (root) => {
   const response = [];
   helper(root, response);
   return response;
@@ -27,42 +27,35 @@ const postOrderTraversal = (root) => {
 
 const helper = (root, response) => {
   if (root !== null) {
+    response.push(root.val);
     if (root.left !== null) {
       helper(root.left, response);
     }
     if (root.right !== null) {
       helper(root.right, response);
     }
-    response.push(root.val);
   }
 };
 
-console.log(postOrderTraversal(root));
+console.log(preOrderTraversal(root));
 
-// Using a stack
-/*
-
-*/
-
-const postOrderStackApproach = (root) => {
+const preOrderStack = (root) => {
   const response = [];
   const stack = [];
 
   stack.push(root);
-
   while (stack.length > 0) {
     const currentNode = stack.pop();
-    // We use unshift to insert at the beginning since we will insert in reverse order
-    // i.e root, right, left
-    response.unshift(currentNode.val);
-    if (currentNode.left !== null) {
-      stack.push(currentNode.left);
-    }
-    // We push this last so that it will be popped out first
+    response.push(currentNode.val);
+
     if (currentNode.right !== null) {
       stack.push(currentNode.right);
+    }
+    // Push the left node last so as to traverse it after the root node
+    if (currentNode.left !== null) {
+      stack.push(currentNode.left);
     }
   }
   return response;
 };
-console.log(postOrderStackApproach(root));
+console.log(preOrderStack(root));
