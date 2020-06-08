@@ -12,7 +12,7 @@ Algorithm
 
 const operatorPrecedence = { "+": 1, "-": 1, "*": 2, "/": 2, "^": 3 };
 
-const isAlpha = (ch) => /^[A-Z]$/i.test(ch);
+const isAlphaOrDigit = (ch) => /^[A-Z]$/i.test(ch) || !isNaN(ch);
 const isStackEmpty = (stack) => Boolean(stack.length);
 const peek = (stack) => stack[stack.length - 1];
 const lessOrEqualPrecedence = (stack, currElem) => {
@@ -23,17 +23,19 @@ const lessOrEqualPrecedence = (stack, currElem) => {
 };
 
 const infixToPostfix = (exp) => {
-  let postfix = "";
+  let postfix = [];
+  const expressionArr = exp.split(" ");
   const operatorStack = [];
-  for (let elem of exp) {
-    if (isAlpha(elem)) {
-      postfix += elem;
+
+  for (let elem of expressionArr) {
+    if (isAlphaOrDigit(elem)) {
+      postfix.push(elem);
     } else if (elem === "(") {
       operatorStack.push(elem);
     } else if (elem === ")") {
       while (isStackEmpty(operatorStack) && peek(operatorStack) !== "(") {
         const operator = operatorStack.pop();
-        postfix += operator;
+        postfix.push(operator);
       }
       operatorStack.pop();
     } else {
@@ -42,16 +44,44 @@ const infixToPostfix = (exp) => {
         lessOrEqualPrecedence(operatorStack, elem)
       ) {
         const operator = operatorStack.pop();
-        postfix += operator;
+
+        postfix.push(operator);
       }
       operatorStack.push(elem);
     }
   }
   while (isStackEmpty(operatorStack)) {
     const operator = operatorStack.pop();
-    postfix += operator;
+    postfix.push(operator);
   }
-  return postfix;
+
+  return postfix.join(" ");
 };
-console.log(infixToPostfix("a+b*c-d"));
-console.log(infixToPostfix("a+b*(c^d-e)^(f+g*h)-i"));
+
+const operations = {
+  "^": (f, s) => Math.pow(f, s),
+  "/": (f, s) => f / s,
+  "*": (f, s) => f * s,
+  "-": (f, s) => f - s,
+  "+": (f, s) => f + s,
+};
+
+const evaluatePostfix = (expression) => {
+  const operandsStack = [];
+  const expressionArr = expression.split(" ");
+  for (let elem of expressionArr) {
+    if (isNaN(elem)) {
+      const val1 = operandsStack.pop();
+      const val2 = operandsStack.pop();
+      operandsStack.push(operations[elem](val2, val1));
+    } else {
+      operandsStack.push(Number(elem));
+    }
+  }
+  return operandsStack[0];
+};
+
+console.log(evaluatePostfix(infixToPostfix("127")));
+console.log(evaluatePostfix(infixToPostfix("2 + 3")));
+console.log(evaluatePostfix(infixToPostfix("2 - 3 - 4")));
+console.log(evaluatePostfix(infixToPostfix("10 * 5 / 2")));
