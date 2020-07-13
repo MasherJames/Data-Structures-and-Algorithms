@@ -12,20 +12,18 @@ class Node {
 
 const sortedInsert = (head, data) => {
   data = new Node(data);
-  if (!head) {
-    head = data;
-    head.next = null;
 
-    return head;
-  }
-
-  if (head.data > data.data) {
+  // Insert node to an empty linked list || head of a linked list
+  if (!head || data.data < head.data) {
     data.next = head;
     head = data;
 
     return head;
   }
 
+  /*
+  Handles inserting a node at the end or in the middle of a linked list
+  */
   let current = head;
 
   while (
