@@ -1,8 +1,7 @@
-// function Node(data) {
-//   this.data = data;
-//   this.next = null;
-// }
-
+/**
+ * inserts a node into the correct location of a pre-sorted linked list which is sorted in ascending order
+ *
+ */
 class Node {
   constructor(data) {
     this.data = data;
