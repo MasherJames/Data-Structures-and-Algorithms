@@ -1,7 +1,4 @@
-class Node(object):
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+from . import Node
 
 def insert_nth(head, index, data):
     new_node = Node(data)

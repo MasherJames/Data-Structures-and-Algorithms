@@ -1,16 +1,33 @@
-const merge = (l1, l2) => {
-  const res = [];
-  while (l1.length && l2.length) {
-    if (l1[0] <= l2[0]) {
-      res.push(l1.shift(l1[0]));
-    } else {
-      res.push(l2.shift(l2[0]));
-    }
-  }
-  return res.concat(l1, l2);
-};
+const merge = (arr1, arr2, originalArr) => {
+  let arr1Indx = 0,
+    arr2Indx = 0,
+    originalArrIndx = 0;
 
-const mergeSort = arr => {
+  while (arr1Indx < arr1.length && arr2Indx < arr2.length) {
+    if (arr1[arr1Indx] <= arr2[arr2Indx]) {
+      originalArr[originalArrIndx] = arr1[arr1Indx];
+      arr1Indx++;
+    } else {
+      originalArr[originalArrIndx] = arr2[arr2Indx];
+      arr2Indx++;
+    }
+    originalArrIndx++;
+  }
+
+  // Execution hits this block if eny of the two arrays had more elements
+  while (arr1Indx < arr1.length) {
+    originalArr[originalArrIndx] = arr1[arr1Indx];
+    arr1Indx++;
+    originalArrIndx++;
+  }
+  while (arr2Indx < arr2.length) {
+    originalArr[originalArrIndx] = arr2[arr2Indx];
+    arr2Indx++;
+    originalArrIndx++;
+  }
+  return originalArr;
+};
+const mergeSort = (arr) => {
   // If array has len less than two, it is sorted already
   if (arr.length < 2) {
     return arr;
@@ -25,6 +42,7 @@ const mergeSort = arr => {
    Until you canno split them further,
    call merge func to sort while merging
    */
-  return merge(mergeSort(firstHalf), mergeSort(secondHalf));
+  return merge(mergeSort(firstHalf), mergeSort(secondHalf), arr);
 };
+
 console.log(mergeSort([54, 26, 93, 17, 77, 31, 44, 55, 20]));
