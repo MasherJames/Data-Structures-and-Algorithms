@@ -1,5 +1,3 @@
-# Sorting a linked list with merge sort
-
 class Node(object):
     def __init__(self, data):
         self.data = data
@@ -32,44 +30,20 @@ def insert_sort(head):
 
 
 # Sorts and Merges two linked lists
-def merge(left_list, right_list):
+def merge(l1, l2):
+    fake_first = Node(-1)
+    last = fake_first
 
-    current_node = Node(0)
-    while(left_list is not None and right_list is not None):
-        # At every time, check for the lesser value
-        if left_list.data <= right_list.data:
-            current_node.next = left_list
-            left_list = left_list.next
-
+    while l1 and l2:
+        if l1.data < l2.data:
+            last.next = l1
+            l1 = l1.next
         else:
-            current_node.next = right_list
-            right_list = right_list.next
-
-        current_node = current_node.next
-
-    while left_list is not None:
-        current_node.next = left_list
-        left_list = left_list.next
-    while right_list is not None:
-        current_node.next = right_list
-        right_list = right_list.next
-
-    return current_node.next
-
-
-
-def merge(a, b):
-
-    # Base cases
-    if a == None:
-        return b
-    if b == None:
-        return a
-
-    if a.data <= b.data:
-        result = a
-        result.next = merge(a.next, b)
-    else:
-        result = b
-        result.next = merge(a, b.next)
-    return result
+            last.next = l2
+            l2 = l2.next
+        last = last.next
+    if l1:
+        last.next = l1
+    if l2:
+        last.next = l2
+    return fake_first.next
