@@ -17,8 +17,9 @@ Common uses
 Left Node Index = 2 * parent_node_indx
 Right Node Index = 2 * parent_node_indx + 1
 Parent Node Index = child_node_indx / 2
-Last Layer always starts = Math.floor(number_of_nodes / 2) + 1
+Last Layer always starts = int(number_of_nodes / 2) + 1
 '''
+
 
 def heapify_max(arr_heap, parent_indx, total_nodes):
     left_node_indx = 2 * parent_indx
@@ -40,6 +41,7 @@ def heapify_max(arr_heap, parent_indx, total_nodes):
         arr_heap[parent_indx], arr_heap[largest_value_node_indx] = arr_heap[largest_value_node_indx], arr_heap[parent_indx]
 
         heapify_max(arr_heap, largest_value_node_indx, total_nodes)
+
 
 def heapify_min(arr_heap, parent_indx, total_nodes):
 
@@ -65,12 +67,15 @@ def heapify_min(arr_heap, parent_indx, total_nodes):
 
 
 def building_max_heap(arr):
-    for i in range(math.floor(len(arr) / 2), 0, -1):
+    for i in range(int(len(arr) / 2), 0, -1):
         heapify_max(arr, i, len(arr))
 
+
 def build_min_heap(arr):
-    for i in range(math.floor(len(arr) / 2), 0, -1):
+    for i in range(int(len(arr) / 2), 0, -1):
         heapify_min(arr, i, len(arr))
+
+
 '''
 First element in array is None to make the root node index 1
 '''
@@ -95,6 +100,52 @@ def heap_sort(arr):
         arr[i], arr[1] = arr[1], arr[i]
         heapify_max(arr, 1, i)
 
+
 arr_to_sort = [None, 4, 3, 7, 1, 8, 5]
 heap_sort(arr_to_sort)
-print(arr_to_sort)
+# print(arr_to_sort)
+
+
+class PriorityQueue:
+    def build_max_heap(self, arr):
+        building_max_heap(arr)
+
+    def max_element(self, arr):
+        return arr[1]
+
+    def extract_maximum(self, arr):
+        queue_len = len(arr)
+
+        if queue_len == 1 and arr[0] == None:
+            return "Priority queue is empty"
+        # store the highest priority value
+        max_value = arr[1]
+        queue_len = queue_len - 1
+        # Replace first value with last value
+        arr[1] = arr[queue_len]
+        arr.pop(queue_len)
+        # heapify excluding one element
+        heapify_max(arr, 1, queue_len)
+        print(arr)
+        return max_value
+
+    def increase_value(self, arr, val, indx):
+        if arr[indx] > val:
+            return "Value lesser than the original"
+
+        arr[indx] = val
+        while(indx > 1 and arr[indx] > arr[int(indx/2)]):
+            arr[int(indx/2)], arr[indx] = arr[indx], arr[int(indx/2)]
+            indx = int(indx/2)
+
+
+arr2 = [None, 4, 8, 1, 7, 3]
+PriorityQueue().build_max_heap(arr2)
+max_element = PriorityQueue().max_element(arr2)
+print(arr2)
+PriorityQueue().increase_value(arr2, 5, 5)
+print(arr2)
+
+# highest_priority=PriorityQueue().extract_maximum(arr2)
+# highest_priority=PriorityQueue().extract_maximum(arr2)
+# print(highest_priority)
